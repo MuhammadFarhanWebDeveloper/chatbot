@@ -4,6 +4,7 @@ import ToggleSidebar from "./ToggleSidebar";
 import { SignedIn, UserButton } from "@clerk/nextjs";
 import Link from "next/link";
 import { useConversations } from "@/lib/ConversationsContext";
+import { useRouter } from "next/navigation";
 
 export default function Sidebar({
   sidebarOpen,
@@ -12,6 +13,11 @@ export default function Sidebar({
   sidebarOpen: boolean;
   toggleSidebar: () => void;
 }) {
+  const router = useRouter()
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault(); // Prevent default Link behavior
+    router.refresh(); // Force re-render of the home page
+  };
   const { conversations } = useConversations();
   return (
     <div
@@ -28,7 +34,7 @@ export default function Sidebar({
       {/* New Chat Button */}
       <button className="flex items-center space-x-2 px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition w-full">
         <FiPlus className="h-5 w-5" />
-        <Link href={"/"} className="text-gray-200">New Chat</Link>
+        <Link href={"/"} className="text-gray-200" onClick={handleClick}>New Chat</Link>
       </button>
 
       {/* Chat History Section */}
