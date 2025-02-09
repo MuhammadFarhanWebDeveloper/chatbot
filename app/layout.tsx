@@ -5,6 +5,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { ConversationsProvider } from "@/lib/ConversationsContext";
 import { auth } from "@clerk/nextjs/server";
 import { getCollection } from "@/lib/connectToDB";
+import NextTopLoader from "nextjs-toploader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,7 +19,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Chatbot by H_M_Farhan",
-  description: "This is chatbot developed using next.js & google gemini by Hafiz Muhammad Farhan",
+  description:
+    "This is chatbot developed using next.js & google gemini by Hafiz Muhammad Farhan",
 };
 
 export default async function RootLayout({
@@ -41,6 +43,13 @@ export default async function RootLayout({
           className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-900`}
         >
           <ConversationsProvider initialConversations={conversations}>
+            <NextTopLoader
+              color="#29D"
+              initialPosition={0.08}
+              crawlSpeed={200}
+              height={4}
+              showSpinner={false}
+            />
             {children}
           </ConversationsProvider>
         </body>
