@@ -8,5 +8,5 @@ export type conversationType = {
   _id: string;
   title: string;
   userid?: string;
-  messages?: any[];
+  messages?: messageType[];
 };

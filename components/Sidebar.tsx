@@ -1,8 +1,7 @@
 import React from "react";
-import { FiMenu, FiPlus } from "react-icons/fi";
+import {  FiPlus } from "react-icons/fi";
 import ToggleSidebar from "./ToggleSidebar";
 import { SignedIn, UserButton } from "@clerk/nextjs";
-import { conversationType } from "@/lib/types";
 import Link from "next/link";
 import { useConversations } from "@/lib/ConversationsContext";
 

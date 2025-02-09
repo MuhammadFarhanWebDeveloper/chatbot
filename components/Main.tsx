@@ -1,15 +1,13 @@
 "use client";
 
 import type React from "react";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { FiSend } from "react-icons/fi";
-import Sidebar from "./Sidebar";
 import ToggleSidebar from "./ToggleSidebar";
-import type { conversationType, messageType } from "@/lib/types";
+import type { messageType } from "@/lib/types";
 import HelloSection from "./HelloSection";
 import MarkdownRenderer from "./MarkdownRenderer";
 import { addChat } from "@/lib/action";
-import { title } from "process";
 import { useConversations } from "@/lib/ConversationsContext";
 
 export default function Main({
@@ -29,17 +27,23 @@ export default function Main({
   const [typingIndex, setTypingIndex] = useState(0);
   const [conversationId, setConversationId] = useState(conversationIdProp);
   const { setConversations, conversations } = useConversations();
-  const insertMessage = async (formData: FormData) => {
-    conversationId && formData.append("conversationsid", conversationId);
-    const response = await addChat(formData);
-    setConversationId(response?._id ?? null);
-    if (response?._id) {
-      setConversations([
-        ...conversations,
-        { _id: response._id, title: response.title },
-      ]);
-    }
-  };
+  const insertMessage = useCallback(
+    async (formData: FormData) => {
+      if (conversationId) {
+        formData.append("conversationsid", conversationId);
+      }
+      const response = await addChat(formData);
+      setConversationId(response?._id ?? null);
+      if (response?._id) {
+        setConversations([
+          ...conversations,
+          { _id: response._id, title: response.title },
+        ]);
+      }
+    },
+    [conversationId, conversations, setConversations]
+  );
+
   useEffect(() => {
     if (isStreaming && typingIndex < currentResponse.length) {
       const timer = setTimeout(() => {
@@ -63,7 +67,7 @@ export default function Main({
 
       insertMessage(formData);
     }
-  }, [isStreaming, currentResponse, typingIndex]);
+  }, [isStreaming, currentResponse, typingIndex, insertMessage, messages]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
