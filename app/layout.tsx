@@ -44,7 +44,7 @@ export default async function RootLayout({
         >
           <ConversationsProvider initialConversations={conversations}>
             <NextTopLoader
-              color="#29D"
+              color="#ff0000"
               initialPosition={0.08}
               crawlSpeed={200}
               height={4}
