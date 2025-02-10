@@ -21,7 +21,7 @@ export default function Sidebar({
   const { conversations } = useConversations();
   return (
     <div
-      className={`bg-gray-900 text-white w-72 z-20 flex flex-col space-y-4 py-5 px-3 absolute inset-y-0 left-0 transform ${
+      className={`bg-gray-800 text-white w-72 z-20 flex flex-col space-y-4 py-5 px-3 absolute inset-y-0 left-0 transform ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       } md:relative md:translate-x-0 transition duration-300 ease-in-out shadow-lg`}
     >

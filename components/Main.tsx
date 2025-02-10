@@ -113,23 +113,18 @@ export default function Main({
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
-  
       {messages.length ? (
         <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-custom">
           {messages.map((message, index) => (
             <div className="flex flex-col gap-4" key={index}>
               <div className="flex items-start space-x-4 justify-end">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center">
-                  U
-                </div>
+              
                 <div className="p-3 rounded-lg max-w-[80%] bg-blue-600 text-white">
                   <p className="whitespace-pre-wrap">{message.request}</p>
                 </div>
               </div>
               <div className="flex items-start space-x-4 justify-start">
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-700 text-gray-100 flex items-center justify-center">
-                  AI
-                </div>
+                
                 <div className="p-3 rounded-lg md:max-w-[80%] bg-gray-700 text-gray-100">
                   <div className="whitespace-pre-wrap">
                     {index === messages.length - 1 && isStreaming ? (
