@@ -130,7 +130,7 @@ export default function Main({
                 <div className="flex-shrink-0 w-8 h-8 rounded-full bg-gray-700 text-gray-100 flex items-center justify-center">
                   AI
                 </div>
-                <div className="p-3 rounded-lg max-w-[80%] bg-gray-700 text-gray-100">
+                <div className="p-3 rounded-lg md:max-w-[80%] bg-gray-700 text-gray-100">
                   <div className="whitespace-pre-wrap">
                     {index === messages.length - 1 && isStreaming ? (
                       <MarkdownRenderer content={displayedResponse} />
@@ -163,7 +163,7 @@ export default function Main({
           />
           <button
             type="submit"
-            disabled={isStreaming}
+            disabled={isStreaming ?? messages.length > 12}
             className="p-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
           >
             <FiSend className="h-5 w-5" />

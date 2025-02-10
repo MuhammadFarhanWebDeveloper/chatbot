@@ -28,7 +28,7 @@ export default function Sidebar({
       {/* Sidebar Header */}
       <div className="flex items-center justify-between px-2">
         <h2 className="text-lg font-semibold text-gray-200">HMF</h2>
-        <ToggleSidebar toggleSideBar={toggleSidebar} />
+        <ToggleSidebar toggleSideBar={toggleSidebar} isSidebarOpened={sidebarOpen} />
       </div>
 
       {/* New Chat Button */}
