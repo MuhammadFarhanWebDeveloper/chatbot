@@ -115,11 +115,7 @@ export default function Main({
 
   return (
     <div className="flex-1 flex flex-col overflow-hidden">
-      <div className="h-[40px] p-2 relative w-full">
-        {!sidebarOpen && (
-          <ToggleSidebar toggleSideBar={() => setSidebarOpen(!sidebarOpen)} />
-        )}
-      </div>
+  
       {messages.length ? (
         <div className="flex-1 overflow-y-auto p-4 space-y-4 scrollbar-custom">
           {messages.map((message, index) => (
