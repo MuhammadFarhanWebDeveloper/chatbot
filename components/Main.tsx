@@ -3,7 +3,6 @@
 import type React from "react";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { FiSend } from "react-icons/fi";
-import ToggleSidebar from "./ToggleSidebar";
 import type { messageType } from "@/lib/types";
 import HelloSection from "./HelloSection";
 import MarkdownRenderer from "./MarkdownRenderer";
@@ -17,7 +16,6 @@ export default function Main({
   conversationId?: null | string;
   messages?: messageType[];
 }) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [messages, setMessages] = useState<messageType[]>(initialMessages);
   const inputRef = useRef<HTMLInputElement>(null);
   const [isStreaming, setIsStreaming] = useState(false);
