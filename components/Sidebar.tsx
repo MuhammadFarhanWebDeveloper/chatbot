@@ -14,10 +14,7 @@ export default function Sidebar({
   toggleSidebar: () => void;
 }) {
   const router = useRouter()
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault(); // Prevent default Link behavior
-    router.refresh(); // Force re-render of the home page
-  };
+  
   const { conversations } = useConversations();
   return (
     <div
