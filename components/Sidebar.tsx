@@ -32,10 +32,13 @@ export default function Sidebar({
       </div>
 
       {/* New Chat Button */}
-      <button className="flex items-center space-x-2 px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition w-full">
-        <FiPlus className="h-5 w-5" />
-        <Link href={"/"} className="text-gray-200" onClick={handleClick}>New Chat</Link>
-      </button>
+      <button
+  className="flex items-center space-x-2 px-4 py-3 bg-gray-700 hover:bg-gray-600 rounded-lg transition w-full"
+  onClick={() => router.push("/")}
+>
+  <FiPlus className="h-5 w-5" />
+  <span className="text-gray-200">New Chat</span>
+</button>
 
       {/* Chat History Section */}
       <nav className="flex-1 overflow-y-auto space-y-2 scrollbar-hide">
