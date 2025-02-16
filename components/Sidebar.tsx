@@ -40,7 +40,7 @@ export default function Sidebar({
       {/* Chat History Section */}
       <nav className="flex-1 overflow-y-auto space-y-2 scrollbar-hide">
         {/* Example chat history */}
-        {conversations.map((item, index) => (
+        {conversations.slice().reverse().map((item, index) => (
           <Link
             key={index}
             href={`/chat/${item._id}`}
