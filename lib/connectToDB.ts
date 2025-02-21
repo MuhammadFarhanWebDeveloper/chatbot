@@ -29,3 +29,13 @@ export const getCollection = async (collectionName: string) => {
   }
   return null;
 };
+
+
+export const closeConnection = async () => {
+  try {
+    await client.close();
+    console.log("<===MongoDB connection closed===>");
+  } catch (error) {
+    console.log("Error closing MongoDB connection:", error);
+  }
+};

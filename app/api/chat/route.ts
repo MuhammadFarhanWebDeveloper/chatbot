@@ -5,9 +5,10 @@ import { NextResponse } from "next/server";
 export const runtime = "edge";
 const prepareContext = (history: messageType[]): string => {
   return history
-    .map((msg) => `User: ${msg.request}\nAI: ${msg.response}`)
+    .map((msg) => `User: ${msg.request}\n${msg.response}`)
     .join("\n");
 };
+
 
 export async function POST(req: Request) {
   try {
@@ -29,9 +30,8 @@ export async function POST(req: Request) {
     });
 
     const context = prepareContext(history);
-    console.log(context);
     const stream = await model.generateContentStream(
-      `${context}\nUser: ${prompt}`
+      `${context}\nUser: ${prompt}\n`
     );
 
     if (!stream?.stream) throw new Error("Failed to generate AI response");

@@ -1,7 +1,7 @@
 "use server";
 
 import { auth } from "@clerk/nextjs/server";
-import { getCollection } from "./connectToDB";
+import { closeConnection, getCollection } from "./connectToDB";
 import { ObjectId } from "mongodb";
 import { generateTitle } from "./generateTitle";
 export const addChat = async (formData: FormData) => {
@@ -22,23 +22,24 @@ export const addChat = async (formData: FormData) => {
         userid,
         messages: [message],
       });
-      console.log(newConversation?.insertedId.toString());
+      await closeConnection();
       return { _id: newConversation?.insertedId.toString(), title };
     }
     const updatesConversation = await collection?.updateOne(
       { _id: new ObjectId(conversationsid as string) },
       { $push: { messages: message } }
     );
-    console.log(updatesConversation);
 
     const chats = collection?.find({
       conversationsid: conversationsid,
       userid: userid,
     });
 
-    console.log(chats);
+    await closeConnection();
+    
   } catch (error) {
     console.log(error);
+    await closeConnection();
   }
 };
 
