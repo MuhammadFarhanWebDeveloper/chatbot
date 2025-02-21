@@ -25,24 +25,18 @@ export const addChat = async (formData: FormData) => {
       await closeConnection();
       return { _id: newConversation?.insertedId.toString(), title };
     }
-    const updatesConversation = await collection?.updateOne(
+    await collection?.updateOne(
       { _id: new ObjectId(conversationsid as string) },
       { $push: { messages: message } }
     );
-
-    const chats = collection?.find({
+    collection?.find({
       conversationsid: conversationsid,
       userid: userid,
     });
 
     await closeConnection();
-    
   } catch (error) {
     console.log(error);
     await closeConnection();
   }
 };
-
-
-
-
