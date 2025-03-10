@@ -10,7 +10,7 @@ A smart chatbot powered by Next.js, MongoDB, Gemini API, and Clerk. This app all
 - Streaming responses (Get instant, word-by-word replies)
 ## Installation
 ### Prerequisites
-Ensure you have the following installed:
+Ensure you have the following requirements:
 - Node.js (>=18.x)
 - MongoDB (local or cloud)
 - Clerk API Key
